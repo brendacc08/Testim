@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    environment:
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    docker:
+    - image: testim/docker-cli
+    steps:
+      - run: mkdir -p $CIRCLE_TEST_REPORTS/testim/
+      - run: testim --token "Si5ugHTRSAS2BexHBS2NVIzoEzoRYOviSqCsd28HDrRiUROX51" --project "RSXimPDlgw7Da8G6SkAr" --grid "No grid available" --report-file $CIRCLE_TEST_REPORTS/testim/results.xml
+      - store_artifacts:
+          path: /tmp/circleci-test-results
+      - store_test_results:
+          path: /tmp/circleci-test-results
